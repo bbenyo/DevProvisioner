@@ -4,6 +4,7 @@ set -x
 echo Hello!
 
 ## Base provisioner
+# Base tools
 sudo apt-get -y install openjdk-8-jdk-headless
 sudo apt-get -y install python3.8
 sudo apt-get -y install python
@@ -11,9 +12,14 @@ sudo apt-get -y install python
 sudo apt-get -y install python3-pip
 sudo apt-get -y install python-pip
 
+sudo apt-get -y install bzip2
+
+# Nmap
 sudo apt-get -y install nmap
 
-sudo apt-get -y install bzip2
+# John
+sudo apt-get -y install wordlist
+sudo apt-get -y install john
 
 python3 -m pip install --upgrade pip
 python -m pip install --upgrade pip
