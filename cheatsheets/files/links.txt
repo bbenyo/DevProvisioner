@@ -1,0 +1,2 @@
+IPv6 tool syntax:  https://gist.github.com/chriselgee/c1c69756e527f649d0a95b6f20337c2f
+Syscalls: https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/
