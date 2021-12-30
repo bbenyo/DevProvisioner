@@ -13,6 +13,8 @@ sudo apt-get -y install python-pip
 
 sudo apt-get -y install nmap
 
+sudo apt-get -y install bzip2
+
 python3 -m pip install --upgrade pip
 python -m pip install --upgrade pip
 
