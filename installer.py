@@ -95,9 +95,9 @@ def installProject(name):
             raise "Unknown project.online.type in "+name+": "+onlineType
 
         if not autoAccept:
-            ans = input("Execute remote download command (y/n): "+cmd)
+            ans = input("Execute remote download command: "+cmd+": (y/n)")
             if ans == 'y' or ans == 'Y':
-                localCommand(cmd)
+                localCommand(cmd, projectDir)
             else:
                 raise "Aborting download of "+name+" due to user command"
             
@@ -150,7 +150,7 @@ def localCommand(command, wdir=os.getcwd()):
 ###################################################
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-d", default="/mnt/c/Dev", help="Root directory to install projects to")
+parser.add_argument("-d", default="/mnt/c/Dev/tools", help="Root directory to install projects to")
 # online is ignored if offline is set
 parser.add_argument("-online", default=False, help="Online mode, try to clone projects from remote servers.  Use offline zips as a backup", action='store_true')
 parser.add_argument("-offline", default=True, help="Offline only mode, get projects from offline zips", action='store_true')
