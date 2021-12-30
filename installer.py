@@ -109,10 +109,6 @@ def installProject(name):
             if (os.path.exists(archive)):
                 print("  Copying "+projOffline+" to "+projectDir)
                 shutil.copy(archive, projectDir)
-                targetZip = os.path.join(projectDir, projOffline)
-                print("  Extracting "+targetZip)
-                with zipfile.ZipFile(targetZip, 'r') as zipr:
-                    zipr.extractall(projectDir)
             else:
                 print("  Unable to find offline archive "+projOffline+" in downloads!")
 
@@ -177,7 +173,9 @@ print("Installing projects to root directory "+targetDir)
 installedProjects = []
 
 # Install base first always
-installProject("base")
+if projectList == None or "base" in projectList:
+    installProject("base")
+
 worklist = getProjects(projectList)
 
 i=1
