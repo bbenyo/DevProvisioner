@@ -12,6 +12,8 @@ sudo apt-get -y install python
 sudo apt-get -y install python3-pip
 sudo apt-get -y install python-pip
 
+sudo apt-get -y install libssl-dev
+
 # Pip
 python3 -m pip install --upgrade pip
 python -m pip install --upgrade pip
@@ -29,7 +31,6 @@ sudo apt-get -y install bzip2
 sudo apt-get -y install nmap
 
 # John
-sudo apt-get -y install wordlist
 sudo apt-get -y install john
 
 date > VERSION-date.txt
