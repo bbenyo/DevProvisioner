@@ -1,7 +1,7 @@
 #!/bin/bash
 set -x
 
-unzip -o CyberChef_v10.5.2.zip
+tar xzvf suricata-6.0.9.tar.gz
 
 date > INSTALL-date.txt
 

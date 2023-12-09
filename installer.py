@@ -72,7 +72,7 @@ def installProject(name):
     filesSubdir = os.path.join(name, "files")
     if os.path.exists(filesSubdir):
         print("    Copying over files subdirectory")
-        shutil.copytree(filesSubdir, projectDir, dirs_exist_ok=True)
+        shutil.copytree(filesSubdir, projectDir, dirs_exist_ok=True, copy_function=shutil.copy)
 
     # 3: Read the project.env to get online/offline/provision links
     config = configparser.RawConfigParser()

@@ -1,6 +1,10 @@
 #!/bin/bash
 set -x
 
+if test -d "scapy"; then
+    mv scapy scapy-master
+fi
+
 pushd scapy-master
 sudo python3 setup.py install
 
