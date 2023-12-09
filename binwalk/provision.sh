@@ -6,6 +6,10 @@ if test -f "binwalk-master.zip"; then
     unzip -o binwalk-master.zip
 fi
 
+if test -d "binwalk"; then
+    mv binwalk binwalk-master
+fi
+
 pushd binwalk-master
 # sudo ./deps.sh
 sudo python3 setup.py install

@@ -1,7 +1,7 @@
 #!/bin/bash
 set -x
 
-tar -xf trufflehog_master.tar.gz
+unzip trufflehog-main.zip
 
 date > INSTALL-date.txt
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 set -x
 
-unzip -o CyberChef_v10.5.2.zip
+tar xzvf enum4linux.tar.gz
 
 date > INSTALL-date.txt
 
