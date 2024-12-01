@@ -1,0 +1,4 @@
+List all tables: .tables
+Table info: pragma table_info([table]);
+Update:  update table set foo=1, bar=2 where id=5
+ 
