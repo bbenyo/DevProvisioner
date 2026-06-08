@@ -1,0 +1,4 @@
+seq -w 0 999999 | ffuf -w - -u "http://a.b.c/foo?customer-number=FUZZ" -fl 91
+
+e.g. Filter out any response with lines = 91
+[O

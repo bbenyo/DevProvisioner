@@ -1,11 +1,12 @@
 #!/bin/bash
 set -x
 
-echo Hello!
+echo Base Provisioner
 
 ## Base provisioner
 # Base tools
 sudo apt-get -y install openjdk-8-jdk-headless
+sudo apt-get -y install openjdk-21-jdk-headless
 sudo apt-get -y install python3.8
 sudo apt-get -y install python
 
@@ -13,6 +14,8 @@ sudo apt-get -y install python3-pip
 sudo apt-get -y install python-pip
 
 sudo apt-get -y install libssl-dev
+
+sudo apt-get -y install golang
 
 # Pip
 python3 -m pip install --upgrade pip

@@ -1,0 +1,36 @@
+az help
+
+az account show
+
+# Storage operations
+az storage account list
+az storage account show --name xxxxx
+az storage container list --account-name XXXXX
+az storage blob list --container-name YYYY --account-name XXXXX
+az storage blob download --container-name YYYY --account-name XXXXX --name ZZZZ --file /dev/stdout
+az storage blob service-properties show --account-name XXXX --auth-mode login
+
+# This will show all resource groups in a readable table format.
+az group list -o table
+
+# This shows what storage accounts exist and their types.
+az storage account list --resource-group rg-the-neighborhood -o table
+
+az storage container list --account-name XXXXX --auth-mode login
+
+az network nsg list -o table
+az network nsg show --name AAAA --resource-group BBBBB
+az network nsg rule list --name AAAA --resource-group BBBB -o table
+az network nsg rule list --name CCCC --g BBBBB --nsg-name AAAA -o table
+
+# Here, [] loops through each item, .name grabs the name field
+az account list --query "[].name"
+
+# [?condition] filters what you want, {custom:fields} makes clean output
+az account list --query "[?state=='Enabled'].{Name:name, ID:id}"
+
+az role assignment list --scope "/subscriptions/{ID of Subscription}" --query [?roleDefinition=='Owner']
+
+az ad member list --group DDDDD
+
+https://learn.microsoft.com/en-us/cli/azure/storage/account?view=azure-cli-latest
