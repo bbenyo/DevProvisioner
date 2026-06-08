@@ -198,13 +198,11 @@ def localCommand(command, wdir=os.getcwd()):
     if logOnly:
         return 1
     
-    proc = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True, encoding='utf8', bufsize=1, cwd=wdir)
-    fullout = ""
-    while proc.poll() is None:
-        line = proc.stdout.readline()
+    proc = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True, encoding='utf8', bufsize=1, cwd=wdir, text=True)
+    for line in proc.stdout:
         print("> "+line, end='')
-        fullout += line
-        
+
+    proc.poll()
     proc.stdout.close();
     proc.wait()
     
