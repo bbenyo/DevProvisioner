@@ -1,12 +1,10 @@
 #!/bin/bash
 
-if test -f "boofuzz-master.zip"; then
-    echo Unzipping boofuzz-master
-    unzip boofuzz-master.zip .
-fi
-
-popd boofuzz-master
-
-pip3 install boofuzz
+sudo apt-get install -y python3-venv build-essential
+mkdir boofuzz && cd boofuzz
+python3.10 -m venv env
+source env/bin/activate
+pip install -U pip setuptools
+pip install boofuzz
 
 exit 1
