@@ -57,7 +57,13 @@ def expandFile(projectDir, archive):
 def defaultProvisioner(name, projectDir, projOffline):
     print("  Running default provisioner (no-op currently) for "+name+"/"+projOffline+" in "+projectDir)
     return True
-    
+
+def renameDirectory(name, extractDir, renameFrom):
+    renameTo = os.path.join(extractDir, name)
+    print("  Renaming "+str(renameFrom)+" to "+str(renameTo))
+    shutil.rmtree(renameTo)
+    shutil.move(os.path.join(extractDir, renameFrom), os.path.join(extractDir, name))
+
 def installProject(name, config, versions):
     global indent
     
@@ -131,6 +137,12 @@ def installProject(name, config, versions):
                 raise "Aborting download of "+name+" due to user command"
         else:
             localCommand(cmd, extractDir)
+
+        if onlineType == 'wget':
+            expandFile(extractDir, projOffline)
+            if renameFrom is not None and len(renameFrom) > 0:
+                renameDirectory(name, extractDir, renameFrom)
+            
     elif not provisionOnly:
         # Offline copy from downloads dir
         if len(projOffline) > 0:
@@ -145,10 +157,7 @@ def installProject(name, config, versions):
                     shutil.copy(archive, extractDir)
                     expandFile(extractDir, archive)
                     if renameFrom is not None and len(renameFrom) > 0:
-                        renameTo = os.path.join(extractDir, name)
-                        print("  Renaming "+str(renameFrom)+" to "+str(renameTo))
-                        shutil.rmtree(renameTo)
-                        shutil.move(os.path.join(extractDir, renameFrom), os.path.join(extractDir, name))
+                        renameDirectory(name, extractDir, renameFrom)
                     copiedArchive = os.path.join(extractDir, projOffline)
                     print("  Removing archive file from "+str(copiedArchive))
                     os.remove(copiedArchive)
