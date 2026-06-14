@@ -145,7 +145,7 @@ def installProject(name, config, versions):
             
     elif not provisionOnly:
         # Offline copy from downloads dir
-        if len(projOffline) > 0:
+        if projOffline is not None and len(projOffline) > 0:
             dlDir = os.path.join(cwd, "downloads")
             archive = os.path.join(dlDir, projOffline)
             extractDir = targetDir
