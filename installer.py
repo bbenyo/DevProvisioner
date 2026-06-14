@@ -115,7 +115,7 @@ def installProject(name, config, versions):
     powershell = safeGet(config, name, 'powershell')
                         
     # 3: Download either online or offline
-    if onlineMode and len(projOnline) > 0 and not provisionOnly:
+    if onlineMode and projOnline is not None and len(projOnline) > 0 and not provisionOnly:
         # Online download
         onlineType = safeGet(config, name, 'online.type')
         cmd = ""
@@ -178,6 +178,8 @@ def installProject(name, config, versions):
         ret = defaultProvisioner(name, projectDir, projOffline)
     elif str(projprov).upper() == "MAKE":
         ret = not localCommand("make", projectDir)
+    elif str(projprov).upper() == "GO":
+        ret = not localCommand("go install", projectDir)      
     else:
         provision = os.path.join(name, projprov) 
         print("  Looking for provisioner at "+provision)

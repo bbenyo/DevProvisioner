@@ -1,8 +1,10 @@
 #!/bin/bash
 set -x
 
-unzip trufflehog-main.zip
+go install
+./scripts/install.sh
 
-date > INSTALL-date.txt
+export PATH=$PATH:$PWD/scripts/bin
+
 
 exit 1
