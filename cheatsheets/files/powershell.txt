@@ -1,0 +1,61 @@
+0. https://learn.microsoft.com/en-us/powershell/module
+a. Save results to variable:
+   $creds = Get-Credentials
+
+1. cat: Get-Content [file]
+   Get-Content [file] | out-host -paging
+2. wc: MeasureObject
+   Get-Content [file] | Measure-Object -Word [-Character | -Line]
+
+3. Netstat: netstat should work or Get-NetTcpConnection
+
+4. Curl: Invoke-RestMethod -Uri [url] -Method [Get|Post|...]
+         Invoke-WebRequest
+
+   Use $ProgressPreference to control output:  $ProgressPreference = 'SilentlyContinue'
+   
+   -Method
+   -Uri http://...
+   -Authentication Basic
+   -Credential admin
+   -OutFile foo.txt
+
+$Uri = 'https://api.contoso.com/v2/profile'
+$Form = @{
+    firstName  = 'John'
+    lastName   = 'Doe'
+    email      = 'john.doe@contoso.com'
+    avatar     = Get-Item -Path 'c:\Pictures\jdoe.png'
+    birthday   = '1980-10-15'
+    hobbies    = 'Hiking','Fishing','Jogging'
+}
+$Result = Invoke-WebRequest -Uri $Uri -Method Post -Form $Form
+
+Add Cookie:
+  $session = [Microsoft.PowerShell.Commands.WebRequestSession]::new()
+  $cookie = [System.Net.Cookie]::new('cookieName', 'value')
+  $session.Cookies.Add('https://domain.tld/', $cookie)
+
+  Include -WebSession $session
+
+5. loops
+   for ($var = 1; $var -le 5; $var++)
+
+6. echo: Write-Host
+
+7. Set-Variable -Name Grumpy -Value Cat
+   Write-Host $Grumpy
+
+8. sleep:  Start-Sleep -Seconds 1
+
+9 functions:  function Foo {
+...
+  $return
+  }
+
+10. Base64:
+PS /home/user> $bytes = [Convert]::FromBase64String($b64)
+PS /home/user> $str = [System.Text.Encoding]::UTF8.GetString($bytes)
+
+[System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($str)
+
