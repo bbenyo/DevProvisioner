@@ -181,16 +181,21 @@ def installProject(name, config, versions):
     elif str(projprov).upper() == "GO":
         ret = not localCommand("go install", projectDir)      
     else:
-        provision = os.path.join(name, projprov) 
-        print("  Looking for provisioner at "+provision)
-        if os.path.exists(provision):
-            pTarget = os.path.join(projectDir, projprov)
-            print("  Copying over "+provision+" to "+pTarget)
-            if not logOnly:
-                shutil.copy(provision, pTarget)
-                ret = localCommand("./"+projprov, projectDir)
+        provision = os.path.join(name, projprov)
+        existingProvisionScript = os.path.join(projectDir, projprov)
+        print("  Looking for existing provision script at "+existingProvisionScript)
+        if os.path.exists(existingProvisionScript):
+            ret = localCommand("./"+projprov, projectDir)
         else:
-            print("  Provision script not found!")
+            print("  Looking for provisioner at "+provision)
+            if os.path.exists(provision):
+                pTarget = os.path.join(projectDir, projprov)
+                print("  Copying over "+provision+" to "+pTarget)
+                if not logOnly:
+                    shutil.copy(provision, pTarget)
+                    ret = localCommand("./"+projprov, projectDir)
+            else:
+                print("  Provision script not found!")
 
     if powershell != None:
         print("  Executing: "+powershell+" in powershell")
