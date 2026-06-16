@@ -39,6 +39,9 @@ sudo apt-get -y install john
 # Tshark
 sudo apt-get -y install wireshark
 
+# gdb
+sudo apt-get -y install gdb
+
 date > VERSION-date.txt
 
 exit 1
